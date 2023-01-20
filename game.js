@@ -14,14 +14,14 @@ function startGame() {
   game.font = elementSize + 'px Verdana';
   game.textBaseline = 'top';
 
-  const mapRows = maps[2].trim().split('\n');
+  const mapRows = maps[1].trim().split('\n');
   const map = mapRows.map(row => row.trim().split(''));
 
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
-      game.fillText(emojis[map[i][j]], (elementSize * j), (elementSize * i) + 5);
-    }
-  }
+  map.forEach((row, y) => {
+    row.forEach((col, x) => {
+      game.fillText(emojis[col], (elementSize * x), (elementSize * y) + 5);
+    });
+  });
 }
 
 function setCanvasSize() {
