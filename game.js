@@ -59,7 +59,23 @@ function setCanvasSize() {
 
 // Movement
 function movePlayer() {
+  limitMovement();
   game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
+}
+
+function limitMovement() {
+  if (playerPosition.x < 0) {
+    playerPosition.x += elementSize;
+  }
+  if (playerPosition.x > (canvasSize - elementSize)) {
+    playerPosition.x -= elementSize;
+  }
+  if (playerPosition.y < 0) {
+    playerPosition.y += elementSize;
+  }
+  if (playerPosition.y > (canvasSize - elementSize)) {
+    playerPosition.y -= elementSize;
+  }
 }
 
 // Keyboard
