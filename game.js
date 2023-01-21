@@ -13,6 +13,8 @@ let level = 0;
 const playerPosition = {
   x: undefined,
   y: undefined,
+  initialX: undefined,
+  initialY: undefined,
 };
 const giftPosition = {
   x: undefined,
@@ -28,14 +30,13 @@ function startGame() {
     winGame();
     return;
   }
-  
+
   setCanvasSize();
 
   elementSize = Math.floor((canvasSize / 10) - 1);
 
   game.font = elementSize + 'px Verdana';
   game.textBaseline = 'top';
-
 
   const mapRows = maps[level].trim().split('\n');
   const map = mapRows.map(row => row.trim().split(''));
@@ -48,9 +49,14 @@ function startGame() {
       posY = (elementSize * y) + 5; // 5: it's just a visual adjustment
 
       // Get playerPosition value
-      if (col == 'O' && playerPosition.x === undefined) {
-        playerPosition.x = posX;
-        playerPosition.y = posY;
+      if (col == 'O') {
+        if (playerPosition.x === undefined) {
+          playerPosition.x = posX;
+          playerPosition.y = posY;
+        }
+
+        playerPosition.initialX = posX;
+        playerPosition.initialY = posY;
       }
 
       // Get giftPosition value
@@ -95,16 +101,14 @@ function movePlayer() {
   // check collisions
   const giftCollisionX = playerPosition.x == giftPosition.x;
   const giftCollisionY = playerPosition.y == giftPosition.y;
-  if (giftCollisionX && giftCollisionY) {
-    beatLevel();
-  }
+  if (giftCollisionX && giftCollisionY) beatLevel();
 
   const enemyCollision = enemyPositions.find(enemy => {
     const collisionX = playerPosition.x == enemy.x;
     const collisionY = playerPosition.y == enemy.y;
     return (collisionX && collisionY);
   });
-  if (enemyCollision) console.log('Perdiste');
+  if (enemyCollision) restartLevel();
 
   game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
@@ -126,6 +130,12 @@ function limitMovement() {
 
 function beatLevel() {
   level++;
+  startGame();
+}
+
+function restartLevel() {
+  playerPosition.x = playerPosition.initialX;
+  playerPosition.y = playerPosition.initialY;
   startGame();
 }
 
