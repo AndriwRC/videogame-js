@@ -12,7 +12,7 @@ let elementSize;
 const playerPosition = {
   x: undefined,
   y: undefined,
-}
+};
 
 window.addEventListener('load', startGame);
 window.addEventListener('resize', startGame);
@@ -30,13 +30,16 @@ function startGame() {
 
   map.forEach((row, y) => {
     row.forEach((col, x) => {
+      posX = (elementSize * x);
+      posY = (elementSize * y) + 5; // 5: it's just a visual adjustment
 
+      // Get playerPosition value
       if (col == 'O' && playerPosition.x === undefined) {
-        playerPosition.x = (elementSize * x);
-        playerPosition.y = (elementSize * y) + 5; // 5: it's just a visual adjustment
+        playerPosition.x = posX;
+        playerPosition.y = posY;
       }
 
-      game.fillText(emojis[col], (elementSize * x), (elementSize * y) + 5);
+      game.fillText(emojis[col], posX, posY);
     });
   });
 
