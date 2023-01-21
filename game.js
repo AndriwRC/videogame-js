@@ -8,6 +8,7 @@ const btnDown = document.querySelector('#down');
 let canvasSize;
 const canvasMinSize = 288;
 let elementSize;
+let level = 0;
 
 const playerPosition = {
   x: undefined,
@@ -23,6 +24,11 @@ window.addEventListener('load', startGame);
 window.addEventListener('resize', startGame);
 
 function startGame() {
+  if (!maps[level]) {
+    winGame();
+    return;
+  }
+  
   setCanvasSize();
 
   elementSize = Math.floor((canvasSize / 10) - 1);
@@ -30,7 +36,8 @@ function startGame() {
   game.font = elementSize + 'px Verdana';
   game.textBaseline = 'top';
 
-  const mapRows = maps[0].trim().split('\n');
+
+  const mapRows = maps[level].trim().split('\n');
   const map = mapRows.map(row => row.trim().split(''));
 
   enemyPositions = []; // Clear array
@@ -89,7 +96,7 @@ function movePlayer() {
   const giftCollisionX = playerPosition.x == giftPosition.x;
   const giftCollisionY = playerPosition.y == giftPosition.y;
   if (giftCollisionX && giftCollisionY) {
-    console.log('Ganaste');
+    beatLevel();
   }
 
   const enemyCollision = enemyPositions.find(enemy => {
@@ -115,6 +122,15 @@ function limitMovement() {
   if (playerPosition.y > (canvasSize - elementSize)) {
     playerPosition.y -= elementSize;
   }
+}
+
+function beatLevel() {
+  level++;
+  startGame();
+}
+
+function winGame() {
+  console.log('Terminaste el juego');
 }
 
 // Keyboard
