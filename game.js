@@ -13,7 +13,6 @@ let level = 0;
 const playerPosition = {
   x: undefined,
   y: undefined,
-<<<<<<< HEAD
   initialX: undefined,
   initialY: undefined,
 };
@@ -25,12 +24,6 @@ let enemyPositions = [];
 
 window.addEventListener('load', startGame);
 window.addEventListener('resize', startGame);
-=======
-}
-
-window.addEventListener('load', setCanvasSize);
-window.addEventListener('resize', setCanvasSize);
->>>>>>> de29b68ccd2807fe8cf00978a6c3504903b28d1e
 
 function startGame() {
   if (!maps[level]) {
@@ -45,18 +38,13 @@ function startGame() {
   game.font = elementSize + 'px Verdana';
   game.textBaseline = 'top';
 
-<<<<<<< HEAD
   const mapRows = maps[level].trim().split('\n');
-=======
-  const mapRows = maps[2].trim().split('\n');
->>>>>>> de29b68ccd2807fe8cf00978a6c3504903b28d1e
   const map = mapRows.map(row => row.trim().split(''));
 
   enemyPositions = []; // Clear array
 
   map.forEach((row, y) => {
     row.forEach((col, x) => {
-<<<<<<< HEAD
       posX = (elementSize * x);
       posY = (elementSize * y) + 5; // 5: it's just a visual adjustment
 
@@ -86,15 +74,6 @@ function startGame() {
         }
 
       game.fillText(emojis[col], posX, posY);
-=======
-
-      if (col == 'O' && playerPosition.x === undefined) {
-        playerPosition.x = (elementSize * x);
-        playerPosition.y = (elementSize * y) + 5; // 5: it's just a visual adjustment
-      }
-
-      game.fillText(emojis[col], (elementSize * x), (elementSize * y) + 5);
->>>>>>> de29b68ccd2807fe8cf00978a6c3504903b28d1e
     });
   });
 
@@ -113,7 +92,6 @@ function setCanvasSize() {
   
   canvas.setAttribute('width', canvasSize);
   canvas.setAttribute('height', canvasSize);
-<<<<<<< HEAD
 }
 
 // Movement
@@ -163,15 +141,6 @@ function restartLevel() {
 
 function winGame() {
   console.log('Terminaste el juego');
-=======
-  
-  startGame();
-}
-
-// Movement
-function movePlayer() {
-  game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
->>>>>>> de29b68ccd2807fe8cf00978a6c3504903b28d1e
 }
 
 // Keyboard
@@ -202,7 +171,6 @@ btnDown.addEventListener('click', moveDown);
 
 function moveUp() {
   playerPosition.y -= elementSize;
-<<<<<<< HEAD
   startGame();
 }
 function moveLeft() {
@@ -216,20 +184,4 @@ function moveRight() {
 function moveDown() {
   playerPosition.y += elementSize;
   startGame();
-=======
-  movePlayer();
-  setCanvasSize();
-}
-function moveLeft() {
-  playerPosition.x -= elementSize;
-  setCanvasSize();
-}
-function moveRight() {
-  playerPosition.x += elementSize;
-  setCanvasSize();
-}
-function moveDown() {
-  playerPosition.y += elementSize;
-  setCanvasSize();
->>>>>>> de29b68ccd2807fe8cf00978a6c3504903b28d1e
 }
