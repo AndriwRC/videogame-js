@@ -9,6 +9,7 @@ let canvasSize;
 const canvasMinSize = 288;
 let elementSize;
 let level = 0;
+let lives = 3;
 
 const playerPosition = {
   x: undefined,
@@ -108,7 +109,10 @@ function movePlayer() {
     const collisionY = playerPosition.y == enemy.y;
     return (collisionX && collisionY);
   });
-  if (enemyCollision) restartLevel();
+  if (enemyCollision) {
+    lives--;
+    (lives > 0) ? restartLevel() : restartGame();
+  }
 
   game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
@@ -136,6 +140,14 @@ function beatLevel() {
 function restartLevel() {
   playerPosition.x = playerPosition.initialX;
   playerPosition.y = playerPosition.initialY;
+  startGame();
+}
+
+function restartGame() {
+  level = 0;
+  lives = 3;
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
   startGame();
 }
 
