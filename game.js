@@ -167,13 +167,13 @@ function limitMovement() {
   if (playerPosition.x < 0) {
     playerPosition.x++;
   }
-  if (playerPosition.x > (canvasSize - elementSize)) {
+  if (playerPosition.x > 9) {
     playerPosition.x--;
   }
   if (playerPosition.y < 0) {
     playerPosition.y++;
   }
-  if (playerPosition.y > (canvasSize - elementSize)) {
+  if (playerPosition.y > 9) {
     playerPosition.y--;
   }
 }
