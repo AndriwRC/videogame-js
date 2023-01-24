@@ -39,7 +39,7 @@ function startGame() {
     return;
   }
 
-  if (!timeStart) {
+  if (timeStart === undefined) {
     timeStart = Date.now();
     timeInterval = setInterval(showTime, 100);
     showRecord();
@@ -195,6 +195,7 @@ function restartGame() {
   playerPosition.x = undefined;
   playerPosition.y = undefined;
   timeStart = undefined;
+  clearInterval(timeInterval);
   startGame();
 }
 
