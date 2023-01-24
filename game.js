@@ -5,12 +5,15 @@ const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
 const livesSpan = document.querySelector('#lives');
+const timeSpan = document.querySelector('#time');
 
 let canvasSize;
 const canvasMinSize = 288;
 let elementSize;
 let level = 0;
 let lives = 3;
+let timeStart;
+let timeInterval;
 
 const playerPosition = {
   x: undefined,
@@ -31,6 +34,11 @@ function startGame() {
   if (!maps[level]) {
     winGame();
     return;
+  }
+
+  if (!timeStart) {
+    timeStart = Date.now();
+    timeInterval = setInterval(showTime, 100);
   }
 
   setCanvasSize();
@@ -104,6 +112,11 @@ function showLives() {
   livesSpan.innerHTML = arr.join('');
 }
 
+function showTime() {
+  const time = Date.now() - timeStart;
+  timeSpan.innerHTML = time;
+}
+
 // Movement
 function movePlayer() {
   limitMovement();
@@ -157,11 +170,13 @@ function restartGame() {
   lives = 3;
   playerPosition.x = undefined;
   playerPosition.y = undefined;
+  timeStart = undefined;
   startGame();
 }
 
 function winGame() {
   console.log('Terminaste el juego');
+  clearInterval(timeInterval);
 }
 
 // Keyboard
