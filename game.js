@@ -6,6 +6,8 @@ const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
 const livesSpan = document.querySelector('#lives');
 const timeSpan = document.querySelector('#time');
+const recordSpan = document.querySelector('#record');
+const pResult = document.querySelector('#result');
 
 let canvasSize;
 const canvasMinSize = 288;
@@ -14,6 +16,7 @@ let level = 0;
 let lives = 3;
 let timeStart;
 let timeInterval;
+let totalTime;
 
 const playerPosition = {
   x: undefined,
@@ -39,6 +42,7 @@ function startGame() {
   if (!timeStart) {
     timeStart = Date.now();
     timeInterval = setInterval(showTime, 100);
+    showRecord();
   }
 
   setCanvasSize();
@@ -74,7 +78,7 @@ function startGame() {
         giftPosition.x = posX;
         giftPosition.y = posY;
       }
-      
+
       // Get enemyPositions
         if (col == 'X') {
           enemyPositions.push({
@@ -113,8 +117,26 @@ function showLives() {
 }
 
 function showTime() {
-  const time = Date.now() - timeStart;
-  timeSpan.innerHTML = time;
+  totalTime = Date.now() - timeStart;
+  timeSpan.innerHTML = (totalTime/1000) + 's';
+}
+
+function showRecord() {
+  recordSpan.innerHTML = (localStorage.getItem('record') / 1000) + 's'; 
+}
+
+function showResult() {
+  if (!localStorage.getItem('record')) {
+    localStorage.setItem('record', totalTime);
+    pResult.innerHTML = 'Primera vez? Muy Bien! Ahora trata de superar tu tiempo.'
+    return ;
+  } 
+  if (totalTime < localStorage.getItem('record')) {
+    localStorage.setItem('record', totalTime);
+    pResult.innerHTML = 'Felicitaciones! Has superado tu record.'
+    return ;
+  } 
+    pResult.innerHTML = 'Terminaste el juego! Ahora trata de superar tu tiempo.'
 }
 
 // Movement
@@ -175,7 +197,7 @@ function restartGame() {
 }
 
 function winGame() {
-  console.log('Terminaste el juego');
+  showResult();
   clearInterval(timeInterval);
 }
 
