@@ -4,6 +4,7 @@ const btnUp = document.querySelector('#up');
 const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
+const livesSpan = document.querySelector('#lives');
 
 let canvasSize;
 const canvasMinSize = 288;
@@ -78,6 +79,8 @@ function startGame() {
     });
   });
 
+  showLives();
+
   movePlayer();
 }
 
@@ -93,6 +96,12 @@ function setCanvasSize() {
   
   canvas.setAttribute('width', canvasSize);
   canvas.setAttribute('height', canvasSize);
+}
+
+function showLives() {
+  const arr = Array(lives).fill(emojis['LIVE']);
+
+  livesSpan.innerHTML = arr.join('');
 }
 
 // Movement
@@ -111,7 +120,7 @@ function movePlayer() {
   });
   if (enemyCollision) {
     lives--;
-    (lives > 0) ? restartLevel() : restartGame();
+    (lives < 0) ? restartGame() : restartLevel();
   }
 
   game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
