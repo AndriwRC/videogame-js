@@ -202,6 +202,11 @@ function restartGame() {
 function winGame() {
   showResult();
   clearInterval(timeInterval);
+  removeEventListener('keydown', moveByKeys);
+  removeEventListener('click', moveUp);
+  removeEventListener('click', moveDown);
+  removeEventListener('click', moveLeft);
+  removeEventListener('click', moveRight);
 }
 
 // Keyboard
