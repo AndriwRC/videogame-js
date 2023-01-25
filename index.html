@@ -7,22 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles.css">
   <title>Platzriv | Jueguito online de carreras y calaveras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="game-container">
     <canvas id="game"></canvas>
-    <div class="btns">
-      <button id="up">Arriba</button>
-      <button id="left">Izquierda</button>
-      <button id="right">Derecha</button>
-      <button id="down">Abajo</button>
+    <div class="btns-container">
+      <button id="up" class="btns__btn btns__btn--up"><span></span></button>
+      <button id="left" class="btns__btn btns__btn--left"><span></span></button>
+      <button id="right" class="btns__btn btns__btn--right"><span></span></button>
+      <button id="down" class="btns__btn btns__btn--down"><span></span></button>
     </div>
     <div class="messages">
-      <p>Vidas <span id="lives"></span></p>
-      <p>Tiempo: <span id="time"></span></p>
-      <p>Record: <span id="record"></span></p>
-      <p id="result"></p>
+      <p class="messages__lives">Vidas: <span id="lives"></span></p>
+      <p class="messages__time">Tiempo: <span id="time"></span></p>
+      <p class="messages__record">Record: <span id="record"></span></p>
+      <p id="result" class="messages__result"></p>
     </div>
   </div>
 
