@@ -9,6 +9,7 @@ const timeSpan = document.querySelector('#time');
 const recordSpan = document.querySelector('#record');
 const pResult = document.querySelector('#result');
 const divBtns = document.querySelector('.btns-container');
+const btnRetry = document.querySelector('.retry-container');
 
 let canvasSize;
 const canvasMinSize = 288;
@@ -205,6 +206,7 @@ function winGame() {
   clearInterval(timeInterval);
   removeEventListener('keydown', moveByKeys);
   divBtns.setAttribute('style', 'display: none');
+  btnRetry.classList.remove('inactive');
 }
 
 // Keyboard
@@ -232,6 +234,7 @@ btnUp.addEventListener('click', moveUp);
 btnLeft.addEventListener('click', moveLeft);
 btnRight.addEventListener('click', moveRight);
 btnDown.addEventListener('click', moveDown);
+btnRetry.addEventListener('click', reloadGame);
 
 function moveUp() {
   playerPosition.y--;
@@ -248,4 +251,8 @@ function moveRight() {
 function moveDown() {
   playerPosition.y++;
   startGame();
+}
+function reloadGame() {
+  console.log('load');
+  location.reload();
 }

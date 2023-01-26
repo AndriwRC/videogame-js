@@ -94,6 +94,7 @@ canvas {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  margin-bottom: 12px;
   width: 80%;
   max-width: 460px;
   height: fit-content;
@@ -105,6 +106,31 @@ p {
   color: var(--white);
   font-size: 2.5rem;
 }
+.retry-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.retry__btn {
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--secondary-color-dark);
+  border-radius: 50%;
+  box-shadow: 6px 6px 22px #2d114b, -6px -6px 22px #4d1d81;
+  background-image: url('./img/refresh.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.retry__btn:active {
+  background-color: var(--secondary-color);
+}
+
+.inactive {
+  display: none;
+}
+
 @media (min-width: 425px) {
   p {
     margin-right: 12px;
