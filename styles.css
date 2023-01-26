@@ -39,7 +39,7 @@ canvas {
   justify-items: stretch;
   margin-bottom: 12px;
   width: 80%;
-  max-width: 320px;
+  max-width: 290px;
   height: fit-content;
 }
 .btns__btn {
@@ -103,15 +103,26 @@ p {
   margin: 0;
   width: 100%;
   color: var(--white);
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
-/* @media (max-width: 440px) {
-  button {
-    margin-top: 25px;
+@media (min-width: 425px) {
+  p {
+    margin-right: 12px;
+    width: fit-content;
   }
-  #up,
-  #down {
-    margin-left: 100%;
-    margin-right: 100%;
+  .messages__lives span {
+    font-size: 2rem;
   }
-} */
+}
+@media (min-width: 748px) {
+  .game-container {
+    align-items: center;
+  }
+  canvas {
+    margin-right: 12px;
+  }
+  .messages {
+    margin: 0 200px;
+    margin-top: 12px;
+  }
+}
