@@ -18,6 +18,9 @@ html {
 body {
   background-color: var(--primary-color);
 }
+button:hover {
+  cursor: pointer;
+}
 .game-container {
   display: flex;
   justify-content: center;
