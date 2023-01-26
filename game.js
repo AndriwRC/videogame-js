@@ -158,6 +158,7 @@ function movePlayer() {
   if (enemyCollision) {
     lives--;
     (lives < 0) ? restartGame() : restartLevel();
+    return;
   }
 
   const posX = playerPosition.x * elementSize;
@@ -186,9 +187,15 @@ function beatLevel() {
 }
 
 function restartLevel() {
+  const posX = playerPosition.x * elementSize;
+  const posY = (playerPosition.y * elementSize) + 5 ;
+  game.clearRect(0, 0, canvasSize, canvasSize);
+  game.fillText(emojis['BOMB_COLLISION'], posX, posY);
   playerPosition.x = playerPosition.initialX;
   playerPosition.y = playerPosition.initialY;
-  startGame();
+  setTimeout(() => {
+    startGame();
+  }, 1200);
 }
 
 function restartGame() {
