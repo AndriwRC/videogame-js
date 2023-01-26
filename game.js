@@ -215,7 +215,7 @@ function restartGame() {
   setTimeout(() => {
     pResult.innerHTML = '';
     startGame();
-  }, 1200);
+  }, 2000);
 }
 
 function winGame() {
