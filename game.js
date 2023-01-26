@@ -8,6 +8,7 @@ const livesSpan = document.querySelector('#lives');
 const timeSpan = document.querySelector('#time');
 const recordSpan = document.querySelector('#record');
 const pResult = document.querySelector('#result');
+const divBtns = document.querySelector('.btns-container');
 
 let canvasSize;
 const canvasMinSize = 288;
@@ -203,10 +204,7 @@ function winGame() {
   showResult();
   clearInterval(timeInterval);
   removeEventListener('keydown', moveByKeys);
-  removeEventListener('click', moveUp);
-  removeEventListener('click', moveDown);
-  removeEventListener('click', moveLeft);
-  removeEventListener('click', moveRight);
+  divBtns.setAttribute('style', 'display: none');
 }
 
 // Keyboard
