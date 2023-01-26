@@ -199,13 +199,23 @@ function restartLevel() {
 }
 
 function restartGame() {
+  const posX = playerPosition.x * elementSize;
+  const posY = (playerPosition.y * elementSize) + 5 ;
+  game.clearRect(0, 0, canvasSize, canvasSize);
+  game.fillText(emojis['GAME_OVER'], posX, posY);
+  pResult.innerHTML = 'Has perdido todas tus vidas :(';
+  playerPosition.x = playerPosition.initialX;
+  playerPosition.y = playerPosition.initialY;
   level = 0;
   lives = 3;
   playerPosition.x = undefined;
   playerPosition.y = undefined;
   timeStart = undefined;
   clearInterval(timeInterval);
-  startGame();
+  setTimeout(() => {
+    pResult.innerHTML = '';
+    startGame();
+  }, 1200);
 }
 
 function winGame() {
